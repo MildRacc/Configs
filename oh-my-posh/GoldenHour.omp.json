@@ -1,0 +1,157 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#89DDFF",
+          "style": "plain",
+          "template": "╭─",
+          "type": "text"
+        },
+        {
+          "foreground": "#FFB347",
+          "style": "plain",
+          "template": "[{{ .CurrentDate | date \"15:04\" }}]",
+          "type": "time"
+        },
+        {
+          "foreground": "#FF6B6B",
+          "foreground_templates": [
+            "{{ if .Root }}#FFD93D{{ end }}"
+          ],
+          "style": "plain",
+          "template": " {{ .UserName }}@{{ .HostName }}",
+          "type": "session"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#89DDFF",
+          "style": "plain",
+          "template": "├─",
+          "type": "text"
+        },
+        {
+          "foreground": "#89DDFF",
+          "properties": {
+            "style": "full",
+            "max_depth": 3,
+            "folder_icon": "\uf07c"
+          },
+          "style": "plain",
+          "template": "\uf07c {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#95E1D3",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFD93D{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FF6B6B{{ end }}",
+            "{{ if gt .Ahead 0 }}#D4A5FF{{ end }}",
+            "{{ if gt .Behind 0 }}#FFB347{{ end }}"
+          ],
+          "properties": {
+            "branch_icon": "\ue0a0 ",
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "plain",
+          "template": "| {{ .UpstreamIcon }}{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} [{{ .Working.String }}]{{ end }}{{ if .Staging.Changed }} [{{ .Staging.String }}]{{ end }}{{ if gt .StashCount 0 }} stash:{{ .StashCount }}{{ end }} ",
+          "type": "git"
+        },
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "#95E1D3",
+          "template": "| \ue718 {{ .Major }}.{{ .Minor }} "
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "#FFD93D",
+          "template": "| \ue73c {{ .Major }}.{{ .Minor }} "
+        },
+        {
+          "type": "rust",
+          "style": "plain",
+          "foreground": "#FFB347",
+          "template": "| \ue7a8 {{ .Major }}.{{ .Minor }} "
+        },
+        {
+          "type": "c",
+          "style": "plain",
+          "foreground": "#6C94FF",
+          "template": "| \ue61e {{ .Major }}.{{ .Minor }} "
+        },
+        {
+          "type": "lua",
+          "style": "plain",
+          "foreground": "#D4A5FF",
+          "template": "| \ue620 {{ .Major }}.{{ .Minor }} "
+        },
+        {
+          "type": "ruby",
+          "style": "plain",
+          "foreground": "#FF6B6B",
+          "template": "| \ue791 {{ .Major }}.{{ .Minor }} "
+        },
+        {
+          "type": "php",
+          "style": "plain",
+          "foreground": "#D4A5FF",
+          "template": "| \ue73d {{ .Major }}.{{ .Minor }} "
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "foreground": "#D4A5FF",
+          "properties": {
+            "always_enabled": true,
+            "style": "roundrock"
+          },
+          "style": "plain",
+          "template": "{{ .FormattedMs }}",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#89DDFF",
+          "style": "plain",
+          "template": "╰─",
+          "type": "text"
+        },
+        {
+          "foreground": "#95E1D3",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#FF6B6B{{ end }}"
+          ],
+          "style": "plain",
+          "template": "{{ if .Root }}#{{ else }}${{ end }} ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 3
+}
