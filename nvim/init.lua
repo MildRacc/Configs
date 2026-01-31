@@ -33,7 +33,7 @@ require("lazy").setup({
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup({
-        ensure_installed = { "clangd", "rust-analyzer" },
+        ensure_installed = { "clangd", "rust_analyzer" },
         handlers = {
           function(server_name)
             require("lspconfig")[server_name].setup({})
@@ -156,6 +156,38 @@ require("lazy").setup({
       vim.cmd([[colorscheme tokyonight]])
     end
   },
+
+  -- Discord Rich Presence
+  {
+  "andweeb/presence.nvim",
+  lazy = false,
+  config = function()
+    require("presence").setup({
+      auto_update         = true,
+      neovim_image_text   = "Neovim",
+      main_image          = "neovim",
+      client_id           = "793271441293967371", -- default Neovim app ID
+      log_level           = nil,
+
+      editing_text        = "Editing %s",
+      file_explorer_text  = "Browsing files",
+      git_commit_text     = "Committing changes",
+      plugin_manager_text = "Managing plugins",
+      reading_text        = "Reading %s",
+      workspace_text      = "Working on %s",
+      line_number_text    = "Line %s out of %s",
+
+      buttons = {
+        {
+          label = "View Config",
+          url = "https://github.com/neovim/neovim",
+        },
+      },
+
+      show_time = true,
+    })
+  end,
+},
 })
 
 -- LSP Keymaps (set after LSP attaches)
